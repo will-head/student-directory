@@ -1,5 +1,8 @@
+# Set $debug to true to enable additional output, disable for rspec
+$debug = true
+
 # let's put all students into an array
-=begin
+# =begin
 students = [
   {name: "Dr. Hannibal Lecter", cohort: :november},
   {name: "Darth Vader", cohort: :november},
@@ -13,7 +16,33 @@ students = [
   {name: "Joffrey Baratheon", cohort: :november},
   {name: "Norman Bates", cohort: :november}
 ]
-=end
+# =end
+def interactive_menu
+#   stop = true
+  loop do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit" # 9 because we'll be adding more items
+    selection = gets.chomp.to_i
+#     break if move == "stick"
+#     hand.push(random_card)
+#     total = score(hand)
+#     busted = true if total > 21
+#     break if busted
+#     puts "Score so far: #{total}"
+    case selection
+    when 1
+      puts "Input was 1" if $debug
+    when 2
+      puts "Input was 2" if $debug
+    when 9
+      puts "Input was 9" if $debug
+    else
+      puts "I don't know what you meant, try again"
+    end
+    break if selection == 9
+  end
+end
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -43,13 +72,19 @@ def print_details(students)
     puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
+def print_extra_details(students)
+  students.each_with_index do |student,index|
+    puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+  end
+end
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
 
 # call methods
-students = input_students
-print_header
-print_details(students)
-print_footer(students)
+students = input_students if !$debug
+interactive_menu
+# print_header
+# print_extra_details(students)
+# print_footer(students)
 
