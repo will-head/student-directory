@@ -13,8 +13,10 @@ students = [
   "Norman Bates"
 ]
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  # Stolen from John Baxter
+  header = "The students of Villains Academy"
+  puts header
+  puts "-" * header.length
 end
 def print_names(names)
   names.each do |name|
