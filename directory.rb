@@ -1,8 +1,8 @@
 # Set $debug to true to enable additional output, disable for rspec
-$debug = true
+# $debug = true
 
 # let's put all students into an array
-# =begin
+=begin
 students = [
   {name: "Dr. Hannibal Lecter", cohort: :november},
   {name: "Darth Vader", cohort: :november},
@@ -16,9 +16,10 @@ students = [
   {name: "Joffrey Baratheon", cohort: :november},
   {name: "Norman Bates", cohort: :november}
 ]
-# =end
-def interactive_menu
-#   stop = true
+=end
+def interactive_menu(students)
+#  NEED TO: not trash students array when adding after initialising
+
   loop do
     puts "1. Input the students"
     puts "2. Show the students"
@@ -33,8 +34,13 @@ def interactive_menu
     case selection
     when 1
       puts "Input was 1" if $debug
+      students = input_students
     when 2
       puts "Input was 2" if $debug
+      print_header
+      p students if $debug
+      print_details(students)
+      print_footer(students)
     when 9
       puts "Input was 9" if $debug
     else
@@ -82,8 +88,9 @@ def print_footer(names)
 end
 
 # call methods
-students = input_students if !$debug
-interactive_menu
+# students = input_students if !$debug
+students = Array.new
+interactive_menu(students)
 # print_header
 # print_extra_details(students)
 # print_footer(students)
